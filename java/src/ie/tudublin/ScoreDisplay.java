@@ -33,6 +33,39 @@ public class ScoreDisplay extends PApplet
 		background(255);
 		drawLines();
 		drawNotes();
+		float border = (float)width * 0.1f;
+		for(int i = 0; i < note.size(); i++){
+			float y = map(i, 0, note.size(), border * 2, width - (border * 2));
+			float y1 = map(i, 1, note.size(), height - border, border * 3);
+			if(mouseX > (y - 5) && mouseX > (y + 5) ){
+				fill(255,255,255);
+				text(note.get(i).getNote(), y, border * 2);
+				fill(255,255,255);
+				if(note.get(i).getType() == "Crotchet"){
+					circle(y, y1, 20);
+					line(y + 10, y1, y + 10, y1 - 50);
+				}
+				else{
+					circle(y, y1, 20);
+					line(y + 10, y1, y + 10, y1 - 50);
+					line(y + 10, y1 - 50, y + 20, y1 - 40);
+				}
+				fill(0);
+			}else{
+				fill(0);
+				text(note.get(i).getNote(), y, border * 2);
+				fill(0);
+				if(note.get(i).getType() == "Crotchet"){
+					circle(y, y1, 20);
+					line(y + 10, y1, y + 10, y1 - 50);
+				}
+				else{
+					circle(y, y1, 20);
+					line(y + 10, y1, y + 10, y1 - 50);
+					line(y + 10, y1 - 50, y + 20, y1 - 40);
+				}
+			}
+		}
 	}
 
 	void drawNotes()
@@ -54,8 +87,6 @@ public class ScoreDisplay extends PApplet
 				line(y + 10, y1 - 50, y + 20, y1 - 40);
 			}
 		}
-
-		
 	}
 
 
