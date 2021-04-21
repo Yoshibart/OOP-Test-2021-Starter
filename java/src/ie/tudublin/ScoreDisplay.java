@@ -6,9 +6,9 @@ import processing.core.PApplet;
 
 public class ScoreDisplay extends PApplet
 {
-	String score = "DEFGABcd";
+	// String score = "DEFGABcd";
 	// String score = "D2E2F2G2A2B2c2d2";
-	// String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
+	String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
 	ArrayList<Note> note = new ArrayList<Note>();
 	
 	public void settings()
@@ -22,20 +22,40 @@ public class ScoreDisplay extends PApplet
 	}
 
 	public void setup() 
-	{
+
+	{	colorMode(HSB);
 		loadScore();
 		printScores();
+		drawLines();
 	}
 
 	public void draw()
 	{
-		background(255);
+		// background(255);
 		
 	}
 
 	void drawNotes()
 	{
 
+	}
+
+
+	public void drawLines(){
+		background(255);
+		float border = (float)width * 0.1f;
+		// float cx = (float)width / 2;
+		for(int i = 1; i <= 5; i++){
+			float y = map(i, 1, 5, border * 2, height - border);
+			stroke(0);
+			fill(0);
+			line(border * 2, y, width - (border * 2), y);
+		}
+		for(int i = 0; i < note.size(); i++){
+			float y = map(i, 0, note.size(), border * 2, width - (border * 2));
+			fill(0);
+			text(note.get(i).getNote(), y + (y * 0.05f), border);
+		}
 	}
 
 	public void loadScore(){
