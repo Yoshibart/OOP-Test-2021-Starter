@@ -51,5 +51,13 @@ public class ScoreDisplay extends PApplet
 			}
 		}
 	}
-	
+	public void printScores(){
+		for(Note n : note){
+			if(n.getDuration() > 1){
+				println(n.getNote() + "		" + n.getDuration() + "	 " + "Crotchet");
+			}else{
+				println(n.getNote() + "		" + n.getDuration() + "	 " + "Quaver");
+			}
+		}
+	}
 }
